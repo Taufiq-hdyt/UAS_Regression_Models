@@ -62,7 +62,7 @@ Setiap tab memiliki fungsi tersendiri yang saling terhubung secara alur kerja.
 
 4. **Model Regresi**
    - Pengguna memilih target (Y) dan prediktor (X).
-   - Model regresi linier dibangun dan disimpan ke dalam file secara manual.
+   - Model regresi linier dibangun dan dapat diunduh sebagai file `.rds`.
    - Output berupa ringkasan model (`summary`), statistik ringkasan (`glance`), dan plot aktual vs prediksi.
 
 5. **Prediksi Data Baru**
@@ -73,14 +73,34 @@ Setiap tab memiliki fungsi tersendiri yang saling terhubung secara alur kerja.
 
 ## Fungsionalitas
 
-- **fileInput()**: Digunakan pada tab Data Preview dan Prediksi Data Baru untuk membaca dua file CSV yang berbeda (training dan testing).
-- **DTOutput()**: Untuk menampilkan data dalam tabel interaktif.
-- **plotOutput()**: Menampilkan scatterplot, plot korelasi, dan plot prediksi.
-- **reactive() dan eventReactive()**: Untuk memproses data dan model berdasarkan aksi pengguna.
-- **saveRDS()**: Untuk menyimpan dan membaca model regresi.
-- **validasi input**: Menggunakan `req()` dan `tryCatch()` untuk menangani kesalahan input.
+- **`fileInput()`**  
+  Digunakan untuk mengunggah file CSV.  
+  - Pada tab **Data Preview**, digunakan untuk mengunggah data *training*.  
+  - Pada tab **Prediksi Data Baru**, digunakan untuk mengunggah data *testing*.  
+  Input ini memicu proses *reactive* untuk membaca dan menampilkan isi file.
 
----
+- **`DTOutput()`**  
+  Menampilkan data dalam format tabel interaktif menggunakan paket `DT`.  
+  - Menampilkan data *training*, data *testing*, dan hasil *prediksi*.
+
+- **`plotOutput()`**  
+  Menampilkan visualisasi grafik dalam berbagai tab:  
+  - **Correlation Matrix**: Menampilkan matriks korelasi antar variabel numerik dengan `corrplot()`.
+  - **Exploratory Analysis**: Scatterplot antar dua variabel dengan pewarnaan gradasi berdasarkan nilai Y.
+  - **Model Regresi**: Visualisasi *Actual vs Predicted* dengan garis referensi `y = x`.
+
+- **`reactive()` dan `eventReactive()`**  
+  Digunakan untuk memproses input pengguna secara dinamis:  
+  - `reactive()` digunakan untuk membaca data *training* dan *testing* setelah diunggah.  
+  - `eventReactive()` digunakan untuk menjalankan pelatihan model regresi dan prediksi **hanya saat tombol ditekan**.
+
+- **`downloadHandler()` dan `saveRDS()`**  
+  Digunakan untuk menyimpan model regresi ke dalam file `.rds`.  
+  - Model disimpan saat pengguna menekan tombol **Unduh Model**, sehingga bisa digunakan kembali untuk prediksi data baru.
+
+- **Validasi Input (`req()` dan `tryCatch()`)**  
+  - `req()` memastikan bahwa input seperti file CSV dan pilihan variabel telah tersedia sebelum menjalankan proses.  
+  - `tryCatch()` menangani kemungkinan error saat membaca file atau menjalankan prediksi, dan menampilkan notifikasi error agar aplikasi tetap berjalan.
 
 ---
 
@@ -99,4 +119,3 @@ Aplikasi ini membantu pengguna:
 - Mengeksplorasi data secara visual dan statistik
 - Membangun model regresi linier berdasarkan variabel pilihan
 - Menyimpan model dan menggunakannya untuk memprediksi data baru
-
