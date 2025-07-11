@@ -44,6 +44,7 @@ Aplikasi ini menggunakan `navbarPage` dengan tema `flatly` dan terdiri atas 5 ta
 
 Setiap tab memiliki fungsi tersendiri yang saling terhubung secara alur kerja.
 
+![ ](apatuh.png)
 ---
 
 ## Alur Aplikasi
