@@ -44,10 +44,6 @@ Aplikasi ini menggunakan `navbarPage` dengan tema `flatly` dan terdiri atas 5 ta
 
 Setiap tab memiliki fungsi tersendiri yang saling terhubung secara alur kerja.
 
-*Gambar Desain Aplikasi*
-
-![ ](apatuh.png)
-
 ---
 
 ## Alur Aplikasi
@@ -66,12 +62,11 @@ Setiap tab memiliki fungsi tersendiri yang saling terhubung secara alur kerja.
 
 4. **Model Regresi**
    - Pengguna memilih target (Y) dan prediktor (X).
-   - Model regresi linier dibangun dan disimpan ke dalam file `model_regresi.rds`.
+   - Model regresi linier dibangun dan disimpan ke dalam file secara manual.
    - Output berupa ringkasan model (`summary`), statistik ringkasan (`glance`), dan plot aktual vs prediksi.
 
 5. **Prediksi Data Baru**
    - Pengguna mengunggah data *testing*.
-   - Model dari `rds` digunakan untuk memprediksi nilai Y berdasarkan variabel X.
    - Hasil prediksi ditampilkan dalam bentuk tabel.
 
 ---
@@ -82,10 +77,11 @@ Setiap tab memiliki fungsi tersendiri yang saling terhubung secara alur kerja.
 - **DTOutput()**: Untuk menampilkan data dalam tabel interaktif.
 - **plotOutput()**: Menampilkan scatterplot, plot korelasi, dan plot prediksi.
 - **reactive() dan eventReactive()**: Untuk memproses data dan model berdasarkan aksi pengguna.
-- **saveRDS() dan readRDS()**: Untuk menyimpan dan membaca model regresi.
+- **saveRDS()**: Untuk menyimpan dan membaca model regresi.
 - **validasi input**: Menggunakan `req()` dan `tryCatch()` untuk menangani kesalahan input.
 
 ---
+
 ---
 
 ## Catatan Penting
